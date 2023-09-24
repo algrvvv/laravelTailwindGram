@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.user-auther{
+    @apply block text-sm px-2 border-fuchsia-300 mt-1 bg-fuchsia-950 text-white max-w-min rounded-full transition-all hover:bg-fuchsia-900 hover:cursor-pointer;
+}
+
+.title{
+    @apply text-gray-700 text-2xl font-semibold hover:text-gray-500 transition-all
+}
+
+.card{
+    @apply bg-white rounded shadow-md p-4 transition-all
+}
