@@ -15,3 +15,11 @@
 .card{
     @apply bg-white rounded shadow-md p-4 transition-all
 }
+
+.reg-input{
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #E5E7EB;
+    outline: none;
+    border: none;
+}

@@ -3,7 +3,7 @@
 @section('title', 'TWG | Home Page')
 
 @section('content')
-
+    
     <form method="GET" action="#" class="w-96 m-10 mx-auto">
         {{-- <select name="filter">
             <option value="0">0</option>
@@ -34,7 +34,7 @@
     <div class="mt-8 p-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
         @foreach ($data as $item)
             <div class="card">
-                <a href="{{route('post', [$item->user_id, $item->id])}}" class="title">
+                <a href="{{ route('post', [$item->user_id, $item->id]) }}" class="title">
                     {{ $item->title }}
                 </a>
                 <span class="block mt-5">
@@ -52,7 +52,7 @@
                     </span>
                 </span>
                 <span class="block font-bold text-red-400">
-                    Created by <a href="{{route('profile', $item->user_id)}}"
+                    Created by <a href="{{ route('profile', $item->user_id) }}"
                         class="hover:text-red-300 transition-all">{{ $item->username }}</a>
                 </span>
             </div>
