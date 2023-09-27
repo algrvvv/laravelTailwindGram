@@ -32,4 +32,17 @@
             </div>
         @endforeach
     </div>
+
+    <div class="flex flex-col justify-center items-center ">
+        <h1 class="font-bold text-3xl">Comments part: </h1>
+        <x-comment title="comment title"
+            content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, consectetur! 
+            Odit ullam corrupti suscipit, minus perferendis aperiam molestias ad culpa obcaecati, 
+            tenetur inventore aliquam eaque." :author="$author" :posts="$posts"></x-comment>
+
+        <x-comment title="comment title"
+            content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, consectetur! 
+            Odit ullam corrupti suscipit, minus perferendis aperiam molestias ad culpa obcaecati, 
+            tenetur inventore aliquam eaque." :author="$author" :posts="$posts"></x-comment>
+    </div>
 @endsection

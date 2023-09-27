@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class PostController extends Controller
@@ -48,15 +49,22 @@ class PostController extends Controller
         $views = Post::where('user_id', $user_id)->where('id', $id)->value('views') + 1;
         Post::where('user_id', $user_id)->where('id', $id)->update(['views' => $views]);
         // dd($views);
-        return view(
-            'posts',
-            [
-                'author'  => User::where('id', $user_id)->value('username'),
-                'posts' => Post::where('user_id', $user_id)
-                    ->where('id', $id)
-                    ->get()
-            ]
-        );
+        $author = User::where('id', $user_id)->value('username');
+        $posts = Post::where('user_id', $user_id)
+            ->where('id', $id)
+            ->get();
+
+        if (isset($author) && count($posts)) {
+            return view(
+                'posts',
+                [
+                    'author'  => $author,
+                    'posts' => $posts
+                ]
+            );
+        } else {
+            throw new ModelNotFoundException();
+        }
     }
 
     public function filter($text)

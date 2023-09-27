@@ -16,18 +16,33 @@ class AuthorController extends Controller
         // inner join posts on posts.user_id = users.id
         // group by username;
 
-        $data = DB::table('users')
-            ->join('posts', 'posts.user_id', '=', 'users.id')
-            ->select('users.*',  DB::raw('SUM(views) as views'), DB::raw('COUNT(*) as count'))
-            ->groupBy('user_id')
-            ->orderBy('username', 'asc')
-            ->paginate(20);
-
-        return view(
-            'authors',
-            [
-                'data'  => $data,
-            ]
-        );
+        if (request('search')) {
+            $data = DB::table('users')
+                ->join('posts', 'posts.user_id', '=', 'users.id')
+                ->select('users.*',  DB::raw('SUM(views) as views'), DB::raw('COUNT(*) as count'))
+                ->where('username', 'LIKE', '%' . request('search') . '%')
+                ->groupBy('user_id')
+                ->orderBy('username', 'asc')
+                ->paginate(20);
+            return view(
+                'authors',
+                [
+                    'data'  => $data,
+                ]
+            );
+        } else {
+            $data = DB::table('users')
+                ->join('posts', 'posts.user_id', '=', 'users.id')
+                ->select('users.*',  DB::raw('SUM(views) as views'), DB::raw('COUNT(*) as count'))
+                ->groupBy('user_id')
+                ->orderBy('username', 'asc')
+                ->paginate(20);
+            return view(
+                'authors',
+                [
+                    'data'  => $data,
+                ]
+            );
+        }
     }
 }

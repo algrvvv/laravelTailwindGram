@@ -24,8 +24,6 @@ Route::get('/', [PostController::class,'index'])->name('home');
 
 Route::get('post/{user_id}/{id}', [PostController::class, 'show'])->name('post');
 
-// Route::get('search/{text}', [PostController::class, 'search'])->name('search');
-
 Route::get('filter/{text}', [PostController::class, 'filter'])->name('filter');
 
 Route::get('user/{id}', [PostController::class, 'profile'])->name('profile');
