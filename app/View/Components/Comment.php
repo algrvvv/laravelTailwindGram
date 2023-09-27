@@ -13,6 +13,7 @@ class Comment extends Component
      */
     public function __construct(
         public $comment,
+        public string $author
     ) { }
 
     /**

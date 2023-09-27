@@ -37,7 +37,7 @@
         <h1 class="font-bold text-3xl my-3">Comments part: </h1>
         @if (count($comments))
             @foreach ($comments as $comment)
-                <x-comment :comment="$comment"></x-comment>
+                <x-comment :comment="$comment" :author="$author"></x-comment>
             @endforeach
         @else
             <x-no-comment></x-no-comment>
@@ -77,8 +77,8 @@
                                 </div>
                             </div>
                     </form>
-                    {{$item->id}} - айди поста
-                    {{$item->user_id}} - айди пользователя
+                    {{-- {{$item->id}} - айди поста
+                    {{$item->user_id}} - айди пользователя --}}
                 @endforeach
             </div>
         </div>

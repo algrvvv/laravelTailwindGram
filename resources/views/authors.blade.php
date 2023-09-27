@@ -24,24 +24,30 @@
         </div>
     </form>
 
-    <div class="grid grid-cols-3 gap-10 m-10">
-        @foreach ($data as $item)
-            <div class="card">
-                <span class="font-bold text-red-400">
-                    <a href="{{ route('profile', $item->id) }}" class="hover:text-red-300 transition-all">
-                        {{ $item->username }}
-                    </a>
-                </span>
+    @if (count($data))
+        <div class="grid grid-cols-3 gap-10 m-10">
+            @foreach ($data as $item)
+                <div class="card">
+                    <span class="font-bold text-red-400">
+                        <a href="{{ route('profile', $item->id) }}" class="hover:text-red-300 transition-all">
+                            {{ $item->username }}
+                        </a>
+                    </span>
 
-                <span class="block text-gray-700">
-                    posts count: {{ $item->count }}
-                </span>
-                <span class="block text-gray-700">
-                    total views count: {{ $item->views }}
-                </span>
-            </div>
-        @endforeach
-    </div>
+                    <span class="block text-gray-700">
+                        posts count: {{ $item->count }}
+                    </span>
+                    <span class="block text-gray-700">
+                        total views count: {{ $item->views }}
+                    </span>
+                </div>
+            @endforeach
+        </div>
+    @else
+        <x-not-found></x-not-found>
+    @endif
+
+
 
     <div class="flex justify-end pb-10 mr-10">
         {{ $data->links() }}
