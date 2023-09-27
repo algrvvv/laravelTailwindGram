@@ -25,7 +25,7 @@ class PostController extends Controller
                     ->orWhere('content', 'LIKE', '%' . $text . '%')
                     ->orWhere('username', 'LIKE', '%' . $text . '%')
                     ->select('posts.*', 'users.username') // без этой строчки генерация ссылки на пост ломалась, хз почему
-                    ->paginate(20),
+                    ->paginate(18),
                 'text' => $text,
             ]);
         } else {
@@ -34,7 +34,7 @@ class PostController extends Controller
             $data = Post::join('users', 'users.id', '=', 'posts.user_id')
                 ->inRandomOrder()
                 ->select('posts.*', 'users.username',)
-                ->paginate(20);
+                ->paginate(18);
 
             return view(
                 'welcome',
