@@ -23,7 +23,7 @@ class AuthorController extends Controller
                 ->where('username', 'LIKE', '%' . request('search') . '%')
                 ->groupBy('user_id')
                 ->orderBy('username', 'asc')
-                ->paginate(20);
+                ->paginate(18);
             return view(
                 'authors',
                 [
@@ -36,7 +36,7 @@ class AuthorController extends Controller
                 ->select('users.*',  DB::raw('SUM(views) as views'), DB::raw('COUNT(*) as count'))
                 ->groupBy('user_id')
                 ->orderBy('username', 'asc')
-                ->paginate(20);
+                ->paginate(18);
             return view(
                 'authors',
                 [
