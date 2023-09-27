@@ -31,10 +31,11 @@ class SessionController extends Controller
             return redirect()->route('home')->with('success', 'Welcome back!');
         }
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('error', 'Oppes! You have entered invalid credentials');
     }
 
     public function profile(){
-        return request()->cookie('laravel_session');
+        return Auth::id();
+        // return request()->cookie('laravel_session');
     }
 }

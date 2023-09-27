@@ -6,7 +6,7 @@
     <div class="flex items-center justify-center min-h-screen">
         <div class="px-8 py-6 mx-4 text-left bg-white shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3">
             <h3 class="text-2xl font-bold text-center">Welcome back!</h3>
-            <form action="{{route('login.log')}}" method="POST">
+            <form action="{{ route('login.log') }}" method="POST">
                 @csrf
                 <div>
                     <div>

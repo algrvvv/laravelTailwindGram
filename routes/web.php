@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CreatePostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
@@ -45,4 +46,5 @@ Route::get('/logout', [SessionController::class, 'destroy'])->name('logout');
 
 // профиль
 
-Route::get('/user', [SessionController::class, 'profile']);
+Route::get('/create', [CreatePostController::class, 'index'])->name('create.home');
+Route::post('/create', [CreatePostController::class, 'store'])->name('create.store');

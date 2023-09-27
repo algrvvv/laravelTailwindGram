@@ -22,6 +22,7 @@ class PostController extends Controller
                     ->where('title', 'LIKE', '%' . $text . '%')
                     ->orWhere('content', 'LIKE', '%' . $text . '%')
                     ->orWhere('username', 'LIKE', '%' . $text . '%')
+                    ->select('posts.*', 'users.username') // без этой строчки генерация ссылки на пост ломалась, хз почему
                     ->paginate(20),
                 'text' => $text,
             ]);
