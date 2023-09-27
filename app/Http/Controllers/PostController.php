@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comments;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -54,12 +55,20 @@ class PostController extends Controller
             ->where('id', $id)
             ->get();
 
+        // select comments.*, users.username from comments
+        // inner join users on users.id = comments.user_id;
+        $comments = Comments::join('users', 'users.id', '=', 'comments.user_id')
+            ->where('post_id', $id)
+            ->select('comments.*', 'users.username')
+            ->get();
+
         if (isset($author) && count($posts)) {
             return view(
                 'posts',
                 [
-                    'author'  => $author,
-                    'posts' => $posts
+                    'author'   => $author,
+                    'posts'    => $posts,
+                    'comments' => $comments
                 ]
             );
         } else {

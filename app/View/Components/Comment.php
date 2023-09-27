@@ -12,10 +12,7 @@ class Comment extends Component
      * @return void
      */
     public function __construct(
-        public string $title,
-        public string $content,
-        public string $author,
-        public $posts,
+        public $comment,
     ) { }
 
     /**

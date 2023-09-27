@@ -29,34 +29,42 @@
     @if (!empty($text))
         <p class="text-2xl text-center">Search by <span class="text-blue-600 underline">{{ $text }}</span></p>
     @endif
-    <div class="mt-8 p-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
-        @foreach ($data as $item)
-            {{-- {{$item->user_id}} --}}
-            <div class="card">
-                <a href="{{ route('post', [$item->user_id, $item->id]) }}" class="title">
-                    {{ $item->title }}
-                </a>
-                <span class="block mt-5">
-                    {{ $item->content }}
-                </span>
-                <span class="flex justify-between my-5 text-sm">
-                    {{ $item->created_at }}
-                    <span class="flex items-center">
-                        <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill="#000000"
-                                d="M512 160c320 0 512 352 512 352S832 864 512 864 0 512 0 512s192-352 512-352zm0 64c-225.28 0-384.128 208.064-436.8 288 52.608 79.872 211.456 288 436.8 288 225.28 0 384.128-208.064 436.8-288-52.608-79.872-211.456-288-436.8-288zm0 64a224 224 0 110 448 224 224 0 010-448zm0 64a160.192 160.192 0 00-160 160c0 88.192 71.744 160 160 160s160-71.808 160-160-71.744-160-160-160z" />
-                        </svg>
-                        <p class="mx-2 text-center">{{ $item->views }} views</p>
+    @if (count($data))
+        <div class="mt-8 p-5 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
+            @foreach ($data as $item)
+                {{-- {{$item->user_id}} --}}
+                <div class="card">
+                    <a href="{{ route('post', [$item->user_id, $item->id]) }}" class="title">
+                        {{ $item->title }}
+                    </a>
+                    <span class="block mt-5">
+                        {{ $item->content }}
                     </span>
-                </span>
-                <span class="block font-bold text-red-400">
-                    Created by <a href="{{ route('profile', $item->user_id) }}"
-                        class="hover:text-red-300 transition-all">{{ $item->username }}</a>
-                </span>
-            </div>
-        @endforeach
-    </div>
+                    <span class="flex justify-between my-5 text-sm">
+                        {{ $item->created_at }}
+                        <span class="flex items-center">
+                            <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#000000"
+                                    d="M512 160c320 0 512 352 512 352S832 864 512 864 0 512 0 512s192-352 512-352zm0 64c-225.28 0-384.128 208.064-436.8 288 52.608 79.872 211.456 288 436.8 288 225.28 0 384.128-208.064 436.8-288-52.608-79.872-211.456-288-436.8-288zm0 64a224 224 0 110 448 224 224 0 010-448zm0 64a160.192 160.192 0 00-160 160c0 88.192 71.744 160 160 160s160-71.808 160-160-71.744-160-160-160z" />
+                            </svg>
+                            <p class="mx-2 text-center">{{ $item->views }} views</p>
+                        </span>
+                    </span>
+                    <span class="block font-bold text-red-400">
+                        Created by <a href="{{ route('profile', $item->user_id) }}"
+                            class="hover:text-red-300 transition-all">{{ $item->username }}</a>
+                    </span>
+                </div>
+            @endforeach
+        </div>
+    @else
+        <div class="flex flex-col justify-center items-center mt-10">
+            <p class="text-2xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
+            <p class="mt-4 mb-8 dark:text-gray-400">But dont worry, you can find plenty of other things on our homepage.</p>
+        </div>
+    @endif
+
 
     <div class="flex justify-end pb-10 mr-10">
         {{ $data->links() }}

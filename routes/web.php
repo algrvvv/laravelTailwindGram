@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\CreatePostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostController::class,'index'])->name('home');
 
 Route::get('post/{user_id}/{id}', [PostController::class, 'show'])->name('post');
+Route::post('post/{user_id}/{id}', [CommentsController::class, 'store'])->name('');
 
 Route::get('filter/{text}', [PostController::class, 'filter'])->name('filter');
 
@@ -46,3 +48,8 @@ Route::get('/logout', [SessionController::class, 'destroy'])->name('logout');
 
 Route::get('/create', [CreatePostController::class, 'index'])->name('create.home');
 Route::post('/create', [CreatePostController::class, 'store'])->name('create.store');
+
+// добавление комментариев
+
+// Route::get('/comment/{post_id}', [CommentsController::class, 'index'])->name('comment.home');
+
