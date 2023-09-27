@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostController::class,'index'])->name('home');
 
 Route::get('post/{user_id}/{id}', [PostController::class, 'show'])->name('post');
-Route::post('post/{user_id}/{id}', [CommentsController::class, 'store'])->name('');
+Route::post('post/{user_id}/{id}', [CommentsController::class, 'store'])->name('comment.store');
 
 Route::get('filter/{text}', [PostController::class, 'filter'])->name('filter');
 
