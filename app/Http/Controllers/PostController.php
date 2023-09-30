@@ -21,6 +21,7 @@ class PostController extends Controller
         if (request('search')) {
             return view('welcome', [
                 'data' => Post::join('users', 'users.id', '=', 'posts.user_id')
+                    ->where('access', true)
                     ->where('title', 'LIKE', '%' . $text . '%')
                     ->orWhere('content', 'LIKE', '%' . $text . '%')
                     ->orWhere('username', 'LIKE', '%' . $text . '%')
@@ -32,6 +33,7 @@ class PostController extends Controller
             // select posts.*, users.username from posts 
             // inner join users on users.id = posts.user_id;
             $data = Post::join('users', 'users.id', '=', 'posts.user_id')
+                ->where('access', true)
                 ->inRandomOrder()
                 ->select('posts.*', 'users.username',)
                 ->paginate(18);
@@ -47,31 +49,38 @@ class PostController extends Controller
 
     public function show($user_id, $id)
     {
-        $views = Post::where('user_id', $user_id)->where('id', $id)->value('views') + 1;
-        Post::where('user_id', $user_id)->where('id', $id)->update(['views' => $views]);
-        // dd($views);
-        $author = User::where('id', $user_id)->value('username');
-        $posts = Post::where('user_id', $user_id)
-            ->where('id', $id)
-            ->get();
 
-        // select comments.*, users.username from comments
-        // inner join users on users.id = comments.user_id;
-        $comments = Comments::join('users', 'users.id', '=', 'comments.user_id')
-            ->where('post_id', $id)
-            ->select('comments.*', 'users.username')
-            ->get();
+        $access = Post::where('user_id', $user_id)->where('id', $id)->value('access');
 
-        if (isset($author) && count($posts)) {
-            return view(
-                'posts',
-                [
-                    'author'   => $author,
-                    'posts'    => $posts,
-                    'comments' => $comments
-                ]
-            );
-        } else {
+        if ($access) {
+            $views = Post::where('user_id', $user_id)->where('id', $id)->value('views') + 1;
+            Post::where('user_id', $user_id)->where('id', $id)->update(['views' => $views]);
+            // dd($views);
+            $author = User::where('id', $user_id)->value('username');
+            $posts = Post::where('user_id', $user_id)
+                ->where('id', $id)
+                ->get();
+
+            // select comments.*, users.username from comments
+            // inner join users on users.id = comments.user_id;
+            $comments = Comments::join('users', 'users.id', '=', 'comments.user_id')
+                ->where('post_id', $id)
+                ->select('comments.*', 'users.username')
+                ->get();
+
+            if (isset($author) && count($posts)) {
+                return view(
+                    'posts',
+                    [
+                        'author'   => $author,
+                        'posts'    => $posts,
+                        'comments' => $comments
+                    ]
+                );
+            } else {
+                throw new ModelNotFoundException();
+            }
+        } else{
             throw new ModelNotFoundException();
         }
     }
@@ -85,6 +94,7 @@ class PostController extends Controller
     {
         $data = Post::join('users', 'users.id', '=', 'posts.user_id')
             ->where('posts.user_id', $user_id)
+            ->where('access', true)
             ->get('posts.*', 'users.username',);
 
         return view(

@@ -21,6 +21,7 @@ class AuthorController extends Controller
                 ->join('posts', 'posts.user_id', '=', 'users.id')
                 ->select('users.*',  DB::raw('SUM(views) as views'), DB::raw('COUNT(*) as count'))
                 ->where('username', 'LIKE', '%' . request('search') . '%')
+                ->where('access', true)
                 ->groupBy('user_id')
                 ->orderBy('username', 'asc')
                 ->paginate(18);
@@ -33,6 +34,7 @@ class AuthorController extends Controller
         } else {
             $data = DB::table('users')
                 ->join('posts', 'posts.user_id', '=', 'users.id')
+                ->where('access', true)
                 ->select('users.*',  DB::raw('SUM(views) as views'), DB::raw('COUNT(*) as count'))
                 ->groupBy('user_id')
                 ->orderBy('username', 'asc')

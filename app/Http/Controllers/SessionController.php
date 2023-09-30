@@ -27,7 +27,9 @@ class SessionController extends Controller
 
         $attrs = $request->only('username', 'password');
 
-        if(Auth::attempt($attrs)){
+        // Auth::attempt($attrs)
+        // auth('admin')->attempt($attrs)
+        if(auth('web')->attempt($attrs)){
             return redirect()->route('home')->with('success', 'Welcome back!');
         }
 

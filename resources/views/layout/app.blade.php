@@ -13,7 +13,7 @@
 <body class="font-body bg-gray-200 relative z-0 h-screen">
     <div class="min-h-screen ">
         @include('inc.header')
-        <div class="flex justify-center items-center m-3 absolute z-10 bottom-0 right-0 ">
+        <div class="fixed flex justify-center items-center m-3 z-10 bottom-0 right-0 ">
             @include('inc.message')
         </div>
         @yield('content')

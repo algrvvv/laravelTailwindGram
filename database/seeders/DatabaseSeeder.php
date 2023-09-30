@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\AdminUser;
 use App\Models\Comments;
 use App\Models\Post;
 use App\Models\User;
@@ -18,13 +19,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        // AdminUser::factory(1)->create([
+        //     "username" => "admin",
+        //     "email"    => "admin@admin.ru",
+        //     "password" => bcrypt("admin")
+        // ]);
         // Post::factory(100)->create();
         // User::factory(10)->create();
 
-        // User::factory()
-        //     ->count(10)
-        //     ->hasPosts(1)
-        //     ->create();
+        User::factory()
+            ->count(10)
+            ->hasPosts(1)
+            ->create();
         
         // Comments::factory(350)->create();
 

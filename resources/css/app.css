@@ -23,3 +23,7 @@
     outline: none;
     border: none;
 }
+
+.group:focus .group-focus\:flex {
+    display: flex;
+}
