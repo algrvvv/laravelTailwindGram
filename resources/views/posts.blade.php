@@ -50,7 +50,7 @@
             <div class="flex items-center justify-center mx-8 mb-4">
                 @foreach ($posts as $item)
                     <form class="bg-white rounded-lg px-4 pt-2" method="post"
-                        action="{{ route('comment.store', [$item->id]) }}">
+                        action="{{ route('comment.store', [$item->user_id, $item->id]) }}">
                         @csrf
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">Add a new comment</h2>
