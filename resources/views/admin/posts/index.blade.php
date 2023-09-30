@@ -13,9 +13,9 @@
     {{-- <div class="flex-grow p-6 overflow-auto bg-gray-800"> --}}
     <div class="grid grid-cols-3 gap-6">
         @foreach ($data as $item)
-                <div class="w-[550px] col-span-1 bg-gray-700 rounded p-3">
-                    <span class="font-bold">{{ $item->title }}</span>
-                    <small class="block ">{{ $item->content }}</small>
+                <div class="w-[550px] col-span-1 bg-gray-700 rounded p-3 shadow-md">
+                    <span class="font-bold underline">{{ $item->title }}</span>
+                    <span class="block ">{{ $item->content }}</span>
                    
                     <form action="{{ route('admin.submit', $item->id) }}" method="post">
                         @method('PUT')
