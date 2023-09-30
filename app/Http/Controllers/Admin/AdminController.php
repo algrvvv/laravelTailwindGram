@@ -30,4 +30,9 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete($id){
+        Post::find($id)->delete();
+        return redirect()->back();
+    }
 }

@@ -16,5 +16,6 @@ Route::middleware('auth:admin')->group(function () {
     // работа с постами
     Route::get('posts', [AdminController::class, 'index'])->name('home');
     Route::put('post/{id}', [AdminController::class, 'submit'])->name('submit');
+    Route::delete('post/{id}', [AdminController::class, 'delete'])->name('delete');
     // Route::resource('posts', PostController::class);
 });

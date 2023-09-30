@@ -13,17 +13,27 @@
     {{-- <div class="flex-grow p-6 overflow-auto bg-gray-800"> --}}
     <div class="grid grid-cols-3 gap-6">
         @foreach ($data as $item)
-                <div class="w-[550px] col-span-1 bg-gray-700 rounded p-3 shadow-md">
-                    <span class="font-bold underline">{{ $item->title }}</span>
-                    <span class="block ">{{ $item->content }}</span>
-                   
+            <div class="w-[550px] col-span-1 bg-gray-700 rounded p-3 shadow-md">
+                <span class="font-bold underline">{{ $item->title }}</span>
+                <span class="block ">{{ $item->content }} / id: {{$item->id}}</span>
+
+                <div class="flex justify-end space-x-3">
+                    <form action="{{ route('admin.delete', $item->id) }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <button type="submit"
+                            class="transition-all float-right hover:underline hover:text-red-400">Ban</button>
+                    </form>
                     <form action="{{ route('admin.submit', $item->id) }}" method="post">
                         @method('PUT')
                         @csrf
-                        <button type="submit" class="transition-all float-right hover:underline hover:text-blue-400">Submit</button>
+                        <button type="submit"
+                            class="transition-all float-right hover:underline hover:text-green-400">Allow</button>
                     </form>
                 </div>
-            @endforeach
+
+            </div>
+        @endforeach
     </div>
 
     {{-- <div class="grid grid-cols-3 gap-6">
