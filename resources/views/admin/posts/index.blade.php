@@ -15,7 +15,7 @@
         @foreach ($data as $item)
             <div class="w-[550px] col-span-1 bg-gray-700 rounded p-3 shadow-md">
                 <span class="font-bold underline">{{ $item->title }}</span>
-                <span class="block ">{{ $item->content }} / id: {{$item->id}}</span>
+                <span class="block ">{{ $item->content }}</span>
 
                 <div class="flex justify-end space-x-3">
                     <form action="{{ route('admin.delete', $item->id) }}" method="post">
