@@ -16,7 +16,7 @@ By clicking on the title, we will be able to see the full text of the article an
 
 >Here are the authors, the number of their posts and the total number of views
 
->>**It is worth noting that in order to publish a post and, accordingly, display the author on this page, it is necessary that the admin approves your post**
+>**It is worth noting that in order to publish a post and, accordingly, display the author on this page, it is necessary that the admin approves your post**
 
 A simple admin panel was made independently on this forum
 <!-- ![Alt text](/screenshots/adminpanel.png?raw=true "Optional Title") -->
