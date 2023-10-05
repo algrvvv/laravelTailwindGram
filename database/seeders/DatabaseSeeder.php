@@ -19,45 +19,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        // AdminUser::factory(1)->create([
-        //     "username" => "admin",
-        //     "email"    => "admin@admin.ru",
-        //     "password" => bcrypt("admin")
-        // ]);
-        // Post::factory(100)->create();
-        // User::factory(10)->create();
-
-        // User::factory()
-        //     ->count(10)
-        //     ->hasPosts(1)
-        //     ->create();
+        AdminUser::factory(1)->create([
+             "username" => "admin",
+             "email"    => "admin@admin.ru",
+             "password" => bcrypt("admin")
+        ]);
         
-        // Comments::factory(350)->create();
+         User::factory()
+             ->count(25)
+             ->hasPosts(3)
+             ->create();
 
-        // User::factory()
-        //     ->count(25)
-        //     ->hasPosts(3)
-        //     ->create();
-
-        // User::factory()
-        //     ->count(5)
-        //     ->hasPosts(5)
-        //     ->create();
-
-        // User::factory()
-        //     ->count(50)
-        //     ->hasPosts(2)
-        //     ->create();
-
-        // User::factory()
-        //     ->count(20)
-        //     ->hasPosts(1)
-        //     ->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Comments::factory(35)->create();
     }
 }
