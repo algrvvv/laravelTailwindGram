@@ -1,6 +1,23 @@
 # TailwindGram
 A small forum written in Laravel, the styles of which, based on the name, are made with a Tailwind.
 
+## Installation
+
+First clone this repository, install the dependencies, and setup your .env file.
+
+```
+git clone git@github.com:algrvvv/laravelTailwindGram.git blog
+composer install
+cp .env.example .env
+```
+
+Then create the necessary database. <br>
+And run the initial migrations and seeders.
+
+```
+php artisan migrate --seed
+```
+
 ## Main page
 On the main page, we are greeted by posts that have been posted
 
