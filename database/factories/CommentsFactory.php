@@ -22,7 +22,7 @@ class CommentsFactory extends Factory
             'post_id' => Post::factory(),
             'user_id' => User::factory(),
             'title' => $this->faker->words(rand(1,8), true),
-            'content' => $this->faker->paragraph(),
+            'content' => $this->faker->text(),
         ];
     }
 }
