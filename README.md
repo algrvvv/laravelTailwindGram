@@ -18,6 +18,11 @@ And run the initial migrations and seeders.
 php artisan migrate --seed
 ```
 
+and in order for tailwind styles to work, write in console
+```
+npm run dev
+```
+
 ## Main page
 On the main page, we are greeted by posts that have been posted
 
